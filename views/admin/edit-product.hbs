@@ -1,0 +1,29 @@
+<h1>edit here</h1>
+
+<h1>{{product.name}}</h1>
+<section>
+    
+    <div class="container mt-5">
+<form action="/admin/edit-product/{{product._id}}" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="">Product Name</label>
+    <input type="text" class="form-control" name="name" value="{{product.name}}">
+  </div>
+  <div class="form-group">
+    <label for="">Price</label>
+    <input type="text" class="form-control" name="price"  value="{{product.price}}">
+  </div>
+  <div class="form-group">
+    <label for="">Image</label>
+    <img src="/product-image/{{product._id}}.jpg" style="height: 150px; width:140px" id='viewimg'>
+    <input type="file" class="form-control-file" name="image" onchange="viewimage(event)">
+  </div>
+  <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to UPDATE')" >Submit</button>
+</form>
+</div>
+</section>
+<script>
+    function viewimage(event){
+        document.getElementById('viewimg').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

@@ -1,0 +1,31 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <h2>Sign in</h2>
+    </div>
+
+    <!-- Login Form -->
+    <form action="/login" method="post">
+      {{#if loginerr}}
+      <h2>invalid user and password</h2>
+      {{/if}}
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+        <div>
+      <a class="underlineHover" href="/password-recovery">Forgot Password?</a>
+    </div>
+    <div>
+     <a class="underlineHover" href="/signup">Create account </a>
+    </div>
+</div>
+
+  </div>
+</div>

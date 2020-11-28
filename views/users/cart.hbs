@@ -1,0 +1,93 @@
+
+   
+{{#if carttotal}}
+<section>
+    <div class="container">
+<table class="table mt-5">
+  <thead>
+    <tr>
+      
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Netprice</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  
+  <tbody>
+    {{#each cartproduct}}
+    <tr>
+      
+      <td><img src="/product-image/{{this.products._id}}.jpg" style="height:50px;width:50px;">{{this.products.name}}</td>
+      <td>{{this.products.price}}</td>
+      
+      
+      
+      <td><button type="button" class="btn btn-secondary mr-3" onclick="changeQuantiy('{{this._id}}','{{this.products._id}}',-1)">-</button> <span id="{{this.products._id}}"> {{this.quantity}}  </span> <button type="button" class="btn btn-secondary ml-3" onclick="changeQuantiy('{{this._id}}','{{this.products._id}}',1)">+</button></td>
+      <td id="{{this.products._id}}price">{{this.netprice}}</td>
+      <td>
+      <a type="button" class="btn btn-danger" href='/remove-cart-product/{{this.products._id}}' onclick="return confirm('Are you sure delete {{this.products.name}}?')">Remove</a>
+</td>
+</tr>
+        {{/each}}
+      
+      
+      
+    
+    
+    
+    
+   
+  </tbody>
+</table>
+<hr>
+<div class="row float-right mr-4" align='right'>
+<div >
+ 
+      <h4 class="float-right mr-5"> Total Amount: Rs.<span id="total">{{carttotal}}</span> </h4> </div><div>
+      <a href="/placeorder" class="btn btn-success float-right mr-5">Order Now</a>
+      </div>
+</div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  function changeQuantiy(cartid,proid,count){
+    let price=proid.concat('price')
+    let quantity=parseInt(document.getElementById(proid).innerHTML)
+    let netprice=parseInt(document.getElementById(price).innerHTML)
+    let total=parseInt(document.getElementById('total').innerHTML)
+    let Oneprice=netprice/quantity
+    $.ajax({
+      url:"/changeQuantity",
+      data:{
+        cart:cartid,
+        product:proid,
+        count:count,
+        quantity:quantity,
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.emptycart){
+          alert("Product removed from Cart")
+          location.reload()
+        }
+        else{
+          count=parseInt(count)
+          document.getElementById(price).innerHTML=netprice+Oneprice*count
+          document.getElementById(proid).innerHTML=quantity+count
+          document.getElementById('total').innerHTML=total+Oneprice*count
+        }
+      }
+
+    })
+  }
+</script>
+ {{else }}
+    <div class="container mt-6">
+    <div class="alert alert-danger" role="alert"><h1 align='center'>
+  CART IS EMPTY!</h1>
+</div>
+</div>
+{{/if}}

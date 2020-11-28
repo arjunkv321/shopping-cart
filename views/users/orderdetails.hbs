@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="row">
+<h4>OrderId : <span>{{orderdetails._id}}</span></h4>
+</div>
+<div class="row">
+            <div class="col-md-7">
+<table class="table mt-5">
+  <thead>
+    <tr>
+      
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Netprice</th>
+      
+    </tr>
+  </thead>
+<tbody>
+    {{#each orderdetails.product.cartitems}}
+    <tr>
+      
+      <td><img src="/product-image/{{this.products._id}}.jpg" style="height:50px;width:50px;">{{this.products.name}}</td>
+      <td>{{this.quantity}}</td>
+      <td>{{this.netprice}}</td>
+      
+      
+        {{/each}}
+   
+  </tbody>
+</table>
+<hr>
+<h4 class="float-right mr-7">Total Price : <span>{{orderdetails.totalAmount}}</span></h4>
+</div>
+   <div class="col-md-5 mt-5">
+       <h3>Delivery Address</h3>
+       <hr>
+       <p>
+           {{orderdetails.deliverydetails.address}} <br>
+           {{orderdetails.deliverydetails.city}} City <br>
+           PIN : {{orderdetails.deliverydetails.pincode}} <br>
+           Contact Number : {{orderdetails.deliverydetails.mobile}} <br>
+           Order Placed On : {{orderdetails.date}}
+       </p>
+       <hr>
+       <h5>Payment Method : {{orderdetails.paymentmethod}}</h5><br>
+       <h5>Order Status : {{orderdetails.status}}</h5>
+   </div>
+    </div>
+</div>

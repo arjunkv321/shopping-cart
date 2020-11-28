@@ -1,0 +1,29 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      {{#if valid}}
+      <p align='center' class="text-danger">You are Already registered</p>
+      {{/if}}
+      <h2>Sign Up</h2>
+    </div>
+
+    <!-- Login Form -->
+    <form action="/signup" method="POST">
+        <input type="text" id="Name" class="fadeIn second" name="Name" placeholder="Name">
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Create Account">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+    <div>
+     <a class="underlineHover" href="/login">Already have account? </a>
+    </div>
+</div>
+
+  </div>
+</div>

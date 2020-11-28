@@ -1,0 +1,29 @@
+<section>
+    <div class="container">
+        <h3>Orders</h3>
+        <hr>
+{{#each orders}}
+<div class="card mt-3">
+  <div class="card-header">
+      <div class="row"><div class="col-md-6">
+    Order Id : <span>{{this._id}}</span></div>
+    <div class="col-md-6 float-right">Date: <span>{{this.date}}</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+       <div class="row">
+            <div class="col-md-4">
+                {{#each this.product.cartitems}}
+    <p class="card-text"><img src="/product-image/{{this.products._id}}.jpg" style="height:50px;width:50px;">{{this.products.name}}</p>
+            {{/each}}
+            </div>
+            <div class="col-md-4"> <h5> Rs.{{this.totalAmount}}</h5> </div>
+            <div class="col-md-4"> <h6> Order is {{this.status}}</h6> </div>
+       </div>
+    <a href="orderdetails/{{this._id}}" class="btn btn-primary float-right">View more Details</a>
+  </div>
+</div>
+{{/each}}
+    </div>
+</section>
+
